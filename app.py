@@ -16,7 +16,7 @@ client = ModbusSerialClient(
 
 if client.connect():
     print("Connected to device")
-    result = client.read_holding_registers(address=252, count=1, slave=1)
+    result = client.read_holding_registers(address=252, count=1, slave=4)
     if not result.isError():
         frequency = result.registers[0]
         print(f"Frequency: {frequency}")

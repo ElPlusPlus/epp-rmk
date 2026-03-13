@@ -17,22 +17,19 @@ client = ModbusSerialClient(
 if client.connect():
     print("Connected to device")
     
-    # Test read from register 0
-    print("\nTesting register 0:")
-    result = client.read_holding_registers(address=0, count=1, slave=4)
-    if not result.isError():
-        print(f"Register 0: {result.registers[0]}")
+    for slave_id in range(256):
+        result = client.read_holding_registers(address=0, count=1, slave=slave_id)
+        if not result.isError():
+            print(f"Success! Slave ID: {slave_id}, Register 0: {result.registers[0]}")
+            break
+        result = client.read_holding_registers(address=252, count=1, slave=slave_id)
+        if not result.isError():
+            print(f"Register 252: {result.registers[0]}")
+            break
+        if slave_id % 10 == 0:
+            print(f"Tested up to slave ID {slave_id}...")
     else:
-        print(f"Error: {result}")
-    
-    # Try register 252
-    print("\nTesting register 252:")
-    result = client.read_holding_registers(address=252, count=1, slave=4)
-    if not result.isError():
-        frequency = result.registers[0]
-        print(f"Frequency: {frequency}")
-    else:
-        print(f"Error: {result}")
+        print("No valid slave ID found")
     
     client.close()
 else:

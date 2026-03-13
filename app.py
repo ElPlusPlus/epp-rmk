@@ -27,7 +27,7 @@ if client.connect():
     
     # Try register 252
     print("\nTesting register 252:")
-    result = client.read_holding_registers(address=252, count=1, slave=4)
+    result = client.read_input_registers(address=252, count=1, slave=4)
     if not result.isError():
         frequency = result.registers[0]
         print(f"Frequency: {frequency}")

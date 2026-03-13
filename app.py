@@ -1,7 +1,7 @@
 from pymodbus.client import ModbusSerialClient
 
 client = ModbusSerialClient(
-    port='/dev/USB0',
+    port='/dev/ttyUSB0',
     baudrate=9600,
     timeout=3
 )

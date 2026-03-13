@@ -17,7 +17,7 @@ client = ModbusSerialClient(
 if client.connect():
     print("Connected to device")
     
-    for slave_id in range(256):
+    for slave_id in [247]:
         result = client.read_holding_registers(address=0, count=1, slave=slave_id)
         if not result.isError():
             print(f"Success! Slave ID: {slave_id}, Register 0: {result.registers[0]}")

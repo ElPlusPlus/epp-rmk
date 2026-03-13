@@ -1,4 +1,9 @@
 from pymodbus.client import ModbusSerialClient
+import logging
+
+logging.basicConfig()
+log = logging.getLogger()
+log.setLevel(logging.DEBUG)
 
 client = ModbusSerialClient(
     port='/dev/ttyUSB0',

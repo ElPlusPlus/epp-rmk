@@ -12,6 +12,8 @@ if client.connect():
     if not result.isError():
         frequency = result.registers[0]
         print(f"Frequency: {frequency}")
+    else:
+        print(f"Error: {result}")
     client.close()
 else:
     print("Failed to connect")
